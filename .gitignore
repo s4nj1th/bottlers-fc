@@ -1,0 +1,28 @@
+# Data files
+/data/
+
+# Outputs (except final CSV)
+/outputs/
+!outputs/visualizations/  # Keep example visualizations
+
+# Jupyter/Python
+.ipynb_checkpoints/
+__pycache__/
+*.py[cod]
+
+# Environment
+.env
+venv/
+.env/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp files
+*.tmp
+*.bak
