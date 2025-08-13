@@ -24,15 +24,13 @@ The **Bottle Score (BS)** quantifies how spectacularly a team fails to meet expe
 $$
 \text{BS} = \begin{cases}
 0 & \text{if league winners} \\
-0.5^{\frac{i-2}{n-2}} \times w & \text{otherwise}
+w \times 0.5^{\frac{i-2}{n-2}} & \text{otherwise}
 \end{cases}
 $$
 
-$$
-i \rightarrow \text{League Position}\\
-n \rightarrow \text{League Size}\\
-w \rightarrow \text{Recency Weight}
-$$
+$$i \rightarrow \text{League Position}$$
+$$n \rightarrow \text{League Size}$$
+$$w \rightarrow \text{Recency Weight}$$
 
 ### Key Factors:
 
