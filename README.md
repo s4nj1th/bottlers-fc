@@ -106,4 +106,8 @@ This analysis uses the [European Football Database](https://www.kaggle.com/datas
 - **Last Updated**: August 2021
 - **License**: [CC0 Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
 
-> _Created by a heartbroken Gooner during "trusting the process"._
+<br />
+<div align="center">
+    <i>Created by a heartbroken Gooner still "trusting the process".</i><br />
+    <img width="330" height="420" alt="logo" src="https://github.com/user-attachments/assets/d11d9050-ebcc-4ff9-8392-d35dd7f509de" />
+</div>
