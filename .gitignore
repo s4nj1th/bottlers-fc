@@ -1,9 +1,8 @@
 # Data files
 /data/
 
-# Outputs (except final CSV)
-/outputs/
-!outputs/visualizations/  # Keep example visualizations
+/output/*
+!/output/visualizations*
 
 # Jupyter/Python
 .ipynb_checkpoints/

@@ -14,100 +14,95 @@ After watching my favorite team [redacted] snatch defeat from the jaws of victor
 2. Creates a "bottle score" that punishes teams for:
    - Finishing close to the top without winning (2nd place is pain)
    - Being in smaller leagues (it's harder to bottle a 20-team league than a 10-team one)
-   - Recent failures (fresh wounds hurt more)
+   - Having small points gaps to champions (the closer you were, the more it hurts)
 3. Exposes the most consistent underachievers in European football
 
-## Bottle Score Formula
+## Bottle Score Formula (v2.0)
 
-The **Bottle Score (BS)** quantifies how spectacularly a team fails to meet expectations:
+The **Bottle Score (BS)** now includes even more sophisticated ways to measure heartbreak:
 
 $$
 \text{BS} = \begin{cases}
-0 & \text{if league winners} \\
-w \times 0.5^{\frac{i-2}{n-2}} & \text{otherwise}
+0 & \text{if champions} \\
+2 \times (n - r + 1) + \frac{100}{\Delta} & \text{otherwise}
 \end{cases}
 $$
 
-$$i \rightarrow \text{League Position}$$
 $$n \rightarrow \text{League Size}$$
-$$w \rightarrow \text{Recency Weight}$$
+$$r \rightarrow \text{Final Position}$$
+$$\Delta \rightarrow \text{Points (or) }\frac{\text{GD}}{2} \text{ gap to winner}$$
 
-### Key Factors:
+### Key Improvements:
+1. **Position Penalty**: Now scales with league size (2nd in EPL hurts more than 2nd in Ligue 1)
+2. **Pain Multiplier**:
+   - 100/points gap if behind champions
+   - 200/GD difference if tied on points
+3. **Normalized**: All scores scaled 0-100 for maximum shame comparability
 
-1. Position Penalty:
+**Example Bottling**:
+2022 Arsenal (2nd in EPL, 5 pts behind):
+`2×(20-2+1) + 100/5 = 38 + 20 = 58 BS`
 
-   - 2nd place hurts most (score = 1.0 before weighting)
-   - Score decays exponentially for lower positions
-   - Champions get 0 (they did their job)
-
-2. League Size Normalization:
-
-   - Bottling in a 20-team league (EPL) is harder than in a 10-team league
-
-3. Recency Weight:
-
-   - Recent failures (2020) count 3×
-   - Older seasons (2014) count 1×
-   - Linear scaling in between
-
-**Example**:
-
-A 2nd place finish in 2020 (20-team league):
-
-```
-(0.5)^(0) × 3 = 3.0 BS
-```
-
-_(Peak bottling performance!)_
-
-**Disclaimer**:
-This is _clearly_ an unscientific, tongue-in-cheek metric created for banter purposes.
+_(That's what we call a premium bottling experience!)_
 
 ## The Results Are In!
 
+The Hall of Shame features:
+
+- **Premier League**: Liverpool (surprisingly!)
+- **La Liga**: Real Madrid (yes, even galacticos bottle sometimes)
+- **Bundesliga**: Dortmund (Haaland can't save you now)
+- **Serie A**: Napoli (eternal bridesmaids)
+- **Ligue 1**: PSG (UCL isn't the only thing they choke)
+
 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2px; margin-top: 1rem;" align="center">
-    <img width="600" alt="Top 10 Bottlers" src="output/visualizations/top10_bottlers.png" />
-    <img width="600" alt="Top 3 Bottlers by League" src="output/visualizations/top3_bottlers_by_league.png" />
+    <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="output/visualizations/top10_bottlers_dark.png">
+        <source media="(prefers-color-scheme: light)" srcset="output/visualizations/top10_bottlers_light.png">
+        <img alt="Top 10 Bottlers in European Football"
+             src="output/visualizations/top10_bottlers_light.png"
+             width="600">
+    </picture>
+    <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="output/visualizations/top3_bottlers_per_league_dark.png">
+        <source media="(prefers-color-scheme: light)" srcset="output/visualizations/top3_bottlers_per_league_light.png">
+        <img alt="Top 3 Bottlers by League"
+             src="output/visualizations/top3_bottlers_per_league_light.png"
+             width="600">
+    </picture>
 </div>
 <br>
 
-The biggest bottlers according to my _\*highly scientific\*_ metric:
-
-- **Premier League**: Tottenham (because of course)
-- **La Liga**: Atletico Madrid
-- **Bundesliga**: Borussia Dortmund
-- **Serie A**: Roma (with Napoli close behind)
-- **Ligue 1**: Lyon
-
-_Full disclosure: My team (Arsenal) appears suspiciously high in these rankings, which I can only assume is a data error._
+_Fun fact: The algorithm detected my own team's [redacted] bottling tendencies so accurately it made me question why I even watch football._
 
 ## Data Source
 
-This analysis uses the [European Football Database](https://www.kaggle.com/datasets/technika148/football-database) from Kaggle, which contains match data from 2014-2020.
+This analysis uses the [Player Scores Dataset](https://www.kaggle.com/datasets/davidcariboo/player-scores) from Kaggle, featuring:
 
-## How to Use
+- Match data from 2012 ~ 2024
+- All major competitions
+- Detailed club and competition info
 
-1. Clone this repo
-2. Install requirements: `pandas`, `numpy`, `matplotlib`
-3. Download the dataset from [Kaggle](https://www.kaggle.com/datasets/technika148/football-database) and place in `/data`
+## How to Run This Pain Machine
+
+1. Clone this repo (if you enjoy emotional damage)
+2. Install requirements: `pandas numpy matplotlib` (the holy trinity of suffering)
+3. Download the dataset and place in `/data`
 4. Run `main.ipynb` to:
-   - See which teams break their fans' hearts the most
-   - Generate beautiful (and painful) visualizations
-   - Discover if your team made the Hall of Shame
+   - Generate fresh new ways to hurt your feelings
+   - Create beautiful dark/light mode visualizations
+   - Discover if your team has upgraded from "occasional bottlers" to "professional choke artists"
 
 ## License
 
-This masterpiece of football analytics is released under [MIT License](./LICENSE) - meaning you're free to use it to roast your rival's team, just don't blame me when the stats hurt your feelings.
-
-## Data Source
-
-This analysis uses the [European Football Database](https://www.kaggle.com/datasets/technika148/football-database) from Kaggle.
-
-- **Last Updated**: August 2021
-- **License**: [CC0 Public Domain](https://creativecommons.org/publicdomain/zero/1.0/)
+This masterpiece of football analytics is released under [MIT License](./LICENSE) - meaning you're free to use it to:
+- Roast your rivals
+- Copium your own team's failures
+- Prove that no, it's not just your imagination - they really are that bad
 
 <br />
 <div align="center">
     <i>Created by a heartbroken Gooner still "trusting the process".</i><br />
+    <strong>#COYG</strong><br />
     <img width="330" height="420" alt="logo" src="https://github.com/user-attachments/assets/d11d9050-ebcc-4ff9-8392-d35dd7f509de" />
 </div>
